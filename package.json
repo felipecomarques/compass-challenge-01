@@ -1,0 +1,15 @@
+{
+  "name": "compass-challenge-01",
+  "version": "1.0.0",
+  "description": "A Veterinary Clinic app built with Node.js and Express for managing appointments, patient records, and veterinary services",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.0.4"
+  }
+}
