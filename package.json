@@ -4,12 +4,17 @@
   "description": "A Veterinary Clinic app built with Node.js and Express for managing appointments, patient records, and veterinary services",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon ./dist/app.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "express": "^4.18.2",
+    "nodemon": "^2.0.22",
     "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "@types/express": "^4.17.17"
   }
 }
