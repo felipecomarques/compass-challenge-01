@@ -1,35 +1,24 @@
 import express, { Request, Response } from 'express';
-import tutors from './data';
+import * as tutorController from './controller/tutors';
+import * as petController from './controller/pet';
 
 const app = express();
 app.use(express.json());
 
-// GET /tutors -> Retrieves all tutors
-app.get('/tutors', (req: Request, res: Response) => {
-    const showTutors = JSON.stringify(tutors, null, 2);
-    res.setHeader('Content-Type', 'application/json');
-    res.send(showTutors);
-});
+// Home Page
+app.get('/', (req: Request, res: Response) => { res.send('Compass') });
 
-// POST/tutor -> Create a new tutor.
-app.post('/tutor', (req: Request, res: Response) => {
-    const newTutor = req.body; 
-    const newTutorId = tutors.length + 1;
-    newTutor.id = newTutorId;
-    tutors.push(newTutor);
-  
-    res.status(201).json(tutors);
-});
+// Tutors Route
+app.get('/tutors', tutorController.getAll);
+app.get('/tutors/:id', tutorController.getByID);
+app.post('/tutors', tutorController.createTutor);
+app.put('/tutors/:id', tutorController.updateTutor);
+app.delete('/tutors/:id', tutorController.deleteTutor);
 
-// PUT/tutor/:id -> Updates a tutor. (Opcional)
-
-// DELETE/tutor/:id -> Deletes a tutor.
-
-// POST/pet/:tutor -> > Creates a pet and adds it to.
-
-// PUT/pet/:petId/tutor/:tutorId -> updates a pet's info.
-
-// DELETE/pet/:petId/tutor/:tutorI -> deletes a pet from a tutor.
+// Pet Route
+app.post('/pet', petController.createPet);
+app.put('/pet/:tutorId', petController.updatePet);
+app.delete('/pet/:tutorId', petController.deletePet);
 
 app.listen(5000, () => {
     console.log('Server is running on port 5000');
