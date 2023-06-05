@@ -1,4 +1,4 @@
-import Joi from 'joi';
+import Joi from "joi";
 
 const petSchema = Joi.object({
   name: Joi.string().required(),
@@ -6,7 +6,7 @@ const petSchema = Joi.object({
   carry: Joi.string().required(),
   weight: Joi.number().required(),
   date_of_birth: Joi.string().required(),
-  id: Joi.number(),
+  id: Joi.number().integer().required(),
 });
 
 export default petSchema;

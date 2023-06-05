@@ -1,7 +1,7 @@
-import Joi from 'joi';
+import Joi from "joi";
 
 const tutorSchema = Joi.object({
-  id: Joi.number(),
+  id: Joi.number().integer().required(),
   name: Joi.string().required(),
   phone: Joi.string().required(),
   email: Joi.string().email().required(),
@@ -9,7 +9,7 @@ const tutorSchema = Joi.object({
   zip_code: Joi.string().required(),
   pets: Joi.array().items(
     Joi.object({
-      id: Joi.number().required(),
+      id: Joi.number().integer(),
       name: Joi.string().required(),
       species: Joi.string().required(),
       carry: Joi.string().required(),

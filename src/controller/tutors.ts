@@ -24,15 +24,18 @@ export const getByID = (req: Request, res: Response) => {
 // POST/tutor -> Create a new tutor.
 export const createTutor = (req: Request, res: Response) => {
   const newTutor = req.body;
-  const { error, value } = tutorSchema.validate(newTutor);
 
+  const { error, value } = tutorSchema.validate(newTutor);
   if (error) {
     res.status(400).json({ error: error.details[0].message });
     return;
   }
 
-  const newTutorId = tutors.length + 1;
-  newTutor.id = newTutorId;
+  const existingTutor = tutors.find((tutor) => tutor.id === newTutor.id);
+  if (existingTutor) {
+    res.status(409).json({ error: "Tutor with the same ID already exists" });
+    return;
+  }
 
   tutors.push(newTutor);
   res.status(201).json(newTutor);
