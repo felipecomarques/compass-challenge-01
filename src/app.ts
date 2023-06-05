@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
-import * as tutorController from "./controller/tutors";
-import * as petController from "./controller/pet";
+import tutorRoutes from './routes/tutorRoutes';
+import petRoutes from "./routes/petRoutes";
 
 const app = express();
 app.use(express.json());
@@ -10,18 +10,11 @@ app.get("/", (req: Request, res: Response) => {
   res.send("Compass");
 });
 
-// -- Tutors Route -- //
-app.get("/tutors", tutorController.getAll);
-//app.get('/tutors/:id', tutorController.getByID);
-app.post("/tutors", tutorController.createTutor);
-app.put("/tutors/:id", tutorController.updateTutor);
-app.delete("/tutors/:id", tutorController.deleteTutor);
+// -- Routes -- //
+app.use(tutorRoutes);
+app.use(petRoutes);
 
-// -- Pet Route -- //
-app.post("/pet/:tutorId", petController.createPet);
-app.put("/pet/:petId/tutor/:tutorId", petController.updatePet);
-app.delete("/pet/:petId/tutor/:tutorId", petController.deletePet);
-
+// -- Server -- //
 app.listen(5000, () => {
   console.log("Server is running on port 5000");
 });
