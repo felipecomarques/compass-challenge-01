@@ -16,6 +16,8 @@
   },
   "dependencies": {
     "@types/express": "^4.17.17",
-    "joi": "^17.9.2"
+    "dotenv": "^16.3.1",
+    "joi": "^17.9.2",
+    "mongoose": "^7.3.1"
   }
 }
