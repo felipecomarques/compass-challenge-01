@@ -9,7 +9,7 @@ interface IPet {
   date_of_birth: Date;
 }
 
-interface ITutor extends Document {
+export interface ITutor extends Document {
   id: number;
   name: string;
   phone: string;
@@ -29,15 +29,15 @@ const petSchema = new Schema<IPet>({
 });
 
 const tutorSchema = new Schema<ITutor>({
-  id: { type: Number, required: true },
+  id: { type: Number, required: false },
   name: { type: String, required: true },
   phone: { type: String, required: true },
   email: { type: String, required: true },
-  date_of_birth: { type: Date, required: true },
+  date_of_birth: { type: Date, required: false },
   zip_code: { type: String, required: true },
-  pets: { type: [petSchema], required: true },
+  pets: { type: [petSchema], required: false },
 });
 
 const TutorModel = mongoose.model<ITutor>('Tutor', tutorSchema);
 
-export default TutorModel;
+export { TutorModel, tutorSchema };

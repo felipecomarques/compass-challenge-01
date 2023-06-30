@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import tutors from "../repositories/dados.json"; // AQUI ERA O ARQUIVO ANTIGO
-import tutorSchema from "../services/tutorService";
+import tutorSchema from "../services/tutorService"; 
+import { TutorModel } from "../models/model";
 
 class tutorsController {
   // GET /tutors -> Retrieves all tutors.
@@ -19,45 +20,49 @@ class tutorsController {
   };
 
   // POST/tutor -> Create a new tutor.
-  createTutor = (req: Request, res: Response) => {
-    const newTutor = req.body;
+  // createTutor = (req: Request, res: Response) => {
+  //   const newTutor = req.body;
 
-    const { error, value } = tutorSchema.validate(newTutor);
-    if (error) {
-      res.status(400).json({ error: error.details[0].message });
-      return;
-    }
+  //   const { error, value } = tutorSchema.validate(newTutor);
+  //   if (error) {
+  //     res.status(400).json({ error: error.details[0].message });
+  //     return;
+  //   }
 
-    const existingTutor = tutors.find((tutor) => tutor.id === newTutor.id);
-    if (existingTutor) {
-      res.status(409).json({ error: "Tutor with the same ID already exists" });
-      return;
-    }
+  //   const existingTutor = tutors.find((tutor) => tutor.id === newTutor.id);
+  //   if (existingTutor) {
+  //     res.status(409).json({ error: "Tutor with the same ID already exists" });
+  //     return;
+  //   }
 
-    tutors.push(newTutor);
-    res.status(201).json(newTutor);
-  };
+  //   tutors.push(newTutor);
+  //   res.status(201).json(newTutor);
+  // };
+  createTutor = async (req: Request, res: Response) => {
+    const task = await TutorModel.create(req.body)
+    res.status(201).json({task})
+  }
 
   // PUT/tutor/:id -> Updates a tutor. (Opcional)
-  updateTutor = (req: Request, res: Response) => {
-    const tutorId = parseInt(req.params.id, 10);
-    const updatedTutor = req.body;
-    const { error, value } = tutorSchema.validate(updatedTutor);
+  // updateTutor = (req: Request, res: Response) => {
+  //   const tutorId = parseInt(req.params.id, 10);
+  //   const updatedTutor = req.body;
+  //   const { error, value } = tutorSchema.validate(updatedTutor);
 
-    if (error) {
-      res.status(400).json({ error: error.details[0].message });
-      return;
-    }
+  //   if (error) {
+  //     res.status(400).json({ error: error.details[0].message });
+  //     return;
+  //   }
 
-    const tutorIndex = tutors.findIndex((tutor) => tutor.id === tutorId);
+  //   const tutorIndex = tutors.findIndex((tutor) => tutor.id === tutorId);
 
-    if (tutorIndex !== -1) {
-      tutors[tutorIndex] = updatedTutor;
-      res.status(200).json(updatedTutor);
-    } else {
-      res.status(404).json({ message: "Tutor not found" });
-    }
-  };
+  //   if (tutorIndex !== -1) {
+  //     tutors[tutorIndex] = updatedTutor;
+  //     res.status(200).json(updatedTutor);
+  //   } else {
+  //     res.status(404).json({ message: "Tutor not found" });
+  //   }
+  // };
 
   // DELETE/tutor/:id -> Deletes a tutor.
   deleteTutor = (req: Request, res: Response) => {
