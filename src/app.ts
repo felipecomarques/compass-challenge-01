@@ -7,7 +7,6 @@ import { connectDB } from "./repositories/database";
 const app = express();
 app.use(express.json());
 
-
 // -- Home Page -- //
 app.get("/", (req: Request, res: Response) => {
   res.send("Compass");

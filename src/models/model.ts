@@ -28,22 +28,20 @@ const petSchema = new Schema<IPet>(
     weight: { type: Number, required: true },
     date_of_birth: { type: Date, required: true },
   },
-  { _id: false}
+  { _id: false }
 );
 
-const tutorSchema = new Schema<ITutor>(
-  {
-    id: { type: Number, required: false },
-    name: { type: String, required: true },
-    phone: { type: String, required: true },
-    email: { type: String, required: true },
-    date_of_birth: { type: Date, required: false },
-    zip_code: { type: String, required: true },
-    pets: { type: [petSchema], required: false },
-  },
-);
+const tutorSchema = new Schema<ITutor>({
+  id: { type: Number, required: false },
+  name: { type: String, required: true },
+  phone: { type: String, required: true },
+  email: { type: String, required: true },
+  date_of_birth: { type: Date, required: true },
+  zip_code: { type: String, required: true },
+  pets: { type: [petSchema], required: false },
+});
 
-tutorSchema.set('toJSON', {
+tutorSchema.set("toJSON", {
   transform: (doc, ret) => {
     ret._id = ret._id;
     delete ret._id;
