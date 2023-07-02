@@ -20,6 +20,11 @@ class tutorRepository {
     const result = await TutorModel.deleteOne({ id }).exec();
     return result.deletedCount !== 0;
   }
+
+  async hasPets(tutorId: number): Promise<boolean> {
+    const tutor = await TutorModel.findOne({ id: tutorId }).exec();
+    return Boolean(tutor && tutor.pets.length > 0);
+  }
 }
 
 export default tutorRepository;

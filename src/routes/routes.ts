@@ -6,7 +6,6 @@ const router = express.Router();
 
 const tutorC = new tutorController;
 router.get("/tutors", tutorC.getTutor);
-//router.get('/tutors/:id', tutorController.getByID); (Not requested)
 router.post("/tutors", tutorC.createTutor);
 router.put("/tutors/:id", tutorC.updateTutor);
 router.delete("/tutors/:id", tutorC.deleteTutor);

@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 dotenv.config();
 import express, { Request, Response } from "express";
 import router from "./routes/routes";
-import { connectDB } from "./data/database";
+import { connectDB } from "./repositories/database";
 
 const app = express();
 app.use(express.json());
@@ -13,14 +13,8 @@ app.get("/", (req: Request, res: Response) => {
   res.send("Compass");
 });
 
-// -- Tutor routes -- //
+// -- Tutor and pet routes -- //
 app.use(router);
-
-// // -- Pet routes -- //
-// app.post("/pet/:tutorId", petController.createPet);
-// app.put("/pet/:petId/tutor/:tutorId", petController.updatePet);
-// app.delete("/pet/:petId/tutor/:tutorId", petController.deletePet);
-
 
 // -- Start -- //
 connectDB(process.env.MONGO_URI!)
