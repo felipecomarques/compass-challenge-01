@@ -1,23 +1,50 @@
 import { Request, Response } from "express";
-import tutors from "../repositories/dados.json"; // AQUI ERA O ARQUIVO ANTIGO
-import tutorSchema from "../services/tutorService"; 
-import { TutorModel } from "../models/model";
+import tutorService from "../services/tutorService";
 
 class tutorsController {
-  // GET /tutors -> Retrieves all tutors.
-  getAll = (req: Request, res: Response) => {
-    const showTutors = JSON.stringify(tutors, null, 2);
-    res.setHeader("Content-Type", "application/json");
-    res.send(showTutors);
-  };
+  private tutService: tutorService;
 
-  // GET /tutors/:id -> Retrieves tutor by id. (Not requested)
-  getByID = (req: Request, res: Response) => {
-    let index = Number(req.params.id);
-    const showTutors = JSON.stringify(this.searchByDd(index), null, 2);
-    res.setHeader("Content-Type", "application/json");
-    res.send(showTutors);
-  };
+  constructor() {
+    this.tutService = new tutorService();
+  }
+
+  // GET /tutors -> Retrieves all tutors.
+  getTutor = async (req: Request, res: Response) => {
+    const result = await this.tutService.select();
+    res.status(201).json({result})
+  }
+
+  // POST/tutor -> Create a new tutor.
+  createTutor = async (req: Request, res: Response) => {
+    try {
+      const result = await this.tutService.create(req.body);
+      return res.status(200).json({ message: "Success", new_tutor: result});
+    } catch (error) {
+      return res.status(400).json({ message: "Failed"});
+    }
+  }
+  
+  // PUT/tutor/:id -> Updates a tutor.
+  updateTutor = async (req: Request, res: Response) => {
+    try {
+      const idTutor = parseInt(req.params.id);
+      const update = await this.tutService.update(idTutor, req.body)
+      return res.status(200).json({ message: "Success", new_tutor: update});
+    } catch (error) {
+      return res.status(400).json({ message: "Failed"});
+    }
+  }
+
+  // DELETE/tutor/:id -> Deletes a tutor.
+  deleteTutor = async (req: Request, res: Response) => {
+    try {
+      const idTutor = parseInt(req.params.id);
+      await this.tutService.delete(idTutor)
+      return res.status(204).end(); // Não é pra retornar mensagem    
+    } catch (error) {
+      return res.status(400).json({ message: "Failed"});
+    }
+  }
 
   // POST/tutor -> Create a new tutor.
   // createTutor = (req: Request, res: Response) => {
@@ -38,10 +65,7 @@ class tutorsController {
   //   tutors.push(newTutor);
   //   res.status(201).json(newTutor);
   // };
-  createTutor = async (req: Request, res: Response) => {
-    const task = await TutorModel.create(req.body)
-    res.status(201).json({task})
-  }
+  
 
   // PUT/tutor/:id -> Updates a tutor. (Opcional)
   // updateTutor = (req: Request, res: Response) => {
@@ -64,22 +88,37 @@ class tutorsController {
   //   }
   // };
 
-  // DELETE/tutor/:id -> Deletes a tutor.
-  deleteTutor = (req: Request, res: Response) => {
-    const tutorId = parseInt(req.params.id, 10);
-    const tutorIndex = tutors.findIndex((tutor) => tutor.id === tutorId);
+  // GET /tutors -> Retrieves all tutors.
+  // getAll = (req: Request, res: Response) => {
+  //   const showTutors = JSON.stringify(tutors, null, 2);
+  //   res.setHeader("Content-Type", "application/json");
+  //   res.send(showTutors);
+  // };
 
-    if (tutorIndex !== -1) {
-      const deletedTutor = tutors.splice(tutorIndex, 1);
-      res.json({ message: "Tutor deleted successfully", deletedTutor });
-    } else {
-      res.status(404).json({ message: "Tutor not found" });
-    }
-  };
+  // // GET /tutors/:id -> Retrieves tutor by id. (Not requested)
+  // getByID = (req: Request, res: Response) => {
+  //   let index = Number(req.params.id);
+  //   const showTutors = JSON.stringify(this.searchByDd(index), null, 2);
+  //   res.setHeader("Content-Type", "application/json");
+  //   res.send(showTutors);
+  // };
 
-  searchByDd(id: Number) {
-    return tutors.filter((tutors) => tutors.id === id);
-  }
+  // // DELETE/tutor/:id -> Deletes a tutor.
+  // deleteTutor = (req: Request, res: Response) => {
+  //   const tutorId = parseInt(req.params.id, 10);
+  //   const tutorIndex = tutors.findIndex((tutor) => tutor.id === tutorId);
+
+  //   if (tutorIndex !== -1) {
+  //     const deletedTutor = tutors.splice(tutorIndex, 1);
+  //     res.json({ message: "Tutor deleted successfully", deletedTutor });
+  //   } else {
+  //     res.status(404).json({ message: "Tutor not found" });
+  //   }
+  // };
+
+  // searchByDd(id: Number) {
+  //   return tutors.filter((tutors) => tutors.id === id);
+  // }
 }
 
-export { tutorsController };
+export default tutorsController;

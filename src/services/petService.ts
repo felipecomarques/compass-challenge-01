@@ -1,12 +1,17 @@
-import Joi from "joi";
+import petRepository from "../repositories/petRepository";
 
-const petSchema = Joi.object({
-  name: Joi.string().required(),
-  species: Joi.string().required(),
-  carry: Joi.string().required(),
-  weight: Joi.number().required(),
-  date_of_birth: Joi.string().required(),
-  id: Joi.number().integer().required(),
-});
+class petService{
+    async create(tutorId: number, body: any){
+        return await new petRepository().createPet(tutorId, body);
+    }
 
-export default petSchema;
+    async update(tutorId: number, petId: number, body: any){
+        return await new petRepository().updatePet(tutorId, petId, body);
+    }
+
+    async delete(tutorId: number, petId: number){
+        return await new petRepository().deletePet(tutorId, petId);
+    }
+}
+
+export default petService;

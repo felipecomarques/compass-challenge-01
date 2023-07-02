@@ -1,6 +1,6 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
-interface IPet {
+export interface IPet {
   id: number;
   name: string;
   species: string;
@@ -40,4 +40,4 @@ const tutorSchema = new Schema<ITutor>({
 
 const TutorModel = mongoose.model<ITutor>('Tutor', tutorSchema);
 
-export { TutorModel, tutorSchema };
+export { TutorModel, petSchema, tutorSchema };
