@@ -1,8 +1,10 @@
 import dotenv from "dotenv";
 dotenv.config();
 import express, { Request, Response } from "express";
+import swaggerUi from "swagger-ui-express";
+import swaggerDocs from "./swagger.json";
 import router from "./routes/routes";
-import { connectDB } from "./repositories/database";
+import connectDB from "./repositories/database";
 
 const app = express();
 app.use(express.json());
@@ -14,6 +16,9 @@ app.get("/", (req: Request, res: Response) => {
 
 // -- Tutor and pet routes -- //
 app.use(router);
+
+// -- doc -- //
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs))
 
 // -- Start -- //
 connectDB(process.env.MONGO_URI!)

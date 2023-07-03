@@ -13,8 +13,8 @@ router.post("/tutors", tutorsController.createTutor);
 router.put("/tutors/:id", authMiddleware, tutorsController.updateTutor);
 router.delete("/tutors/:id", authMiddleware, tutorsController.deleteTutor);
 
-router.post("/pet/:tutorId", petsController.createPet);
-router.put("/pet/:petId/tutor/:tutorId", petsController.updatePet);
-router.delete("/pet/:petId/tutor/:tutorId", petsController.deletePet);
+router.post("/pet/:tutorId", authMiddleware, petsController.createPet);
+router.put("/pet/:petId/tutor/:tutorId", authMiddleware, petsController.updatePet);
+router.delete("/pet/:petId/tutor/:tutorId", authMiddleware, petsController.deletePet);
 
 export default router;

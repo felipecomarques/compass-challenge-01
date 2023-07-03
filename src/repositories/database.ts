@@ -10,4 +10,4 @@ const connectDB = async (url: string): Promise<void> => {
   }
 };
 
-export { connectDB };
+export default connectDB;

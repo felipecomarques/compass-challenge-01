@@ -1,0 +1,322 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API for veterinary franchise",
+    "description": "Microservice for its veterinary franchise. This microservice will be used by all the clinics they own for internal client and attendances management.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Felipe da Costa Marques",
+      "url": "https://github.com/felipecomarques",
+      "email": "felipe.comarques1208@gmail.com"
+    }
+  },
+  "tags": [
+    {
+      "name": "Tutors",
+      "description": "Everything about tutors"
+    },
+    {
+      "name": "Pets",
+      "description": "Everything about pets"
+    }
+  ],
+  "paths": {
+    "/tutors": {
+      "get": {
+        "tags": ["Tutors"],
+        "summary": "Retrieves all tutors",
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "201": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/tutor"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Tutors"],
+        "summary": "Create a new tutor",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/tutor"
+              },
+              "examples": {
+                "tutor": {
+                  "value": {
+                    "name": "Jonh Doe",
+                    "phone": "85989323895",
+                    "email": "jose.abreu@compasso.com",
+                    "date_of_birth": "1993-12-12 10:10",
+                    "zip_code": "61760000"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/tutor"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tutors/{id}": {
+      "put": {
+        "tags": ["Tutors"],
+        "summary": "Updates a tutor",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Tutor ID you want to update",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/tutor"
+              },
+              "examples": {
+                "tutor": {
+                  "value": {
+                    "name": "Felipe Marques",
+                    "phone": "999221208",
+                    "email": "felipe.m@compasso.com",
+                    "date_of_birth": "2001-12-12 10:10",
+                    "zip_code": "63430000"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/tutor"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Tutors"],
+        "summary": "Deletes a tutor",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Tutor ID you want to delete",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No content"
+          }
+        }
+      }
+    },
+    "/pet/{tutorId}": {
+      "post": {
+        "tags": ["Pets"],
+        "summary": "Creates a pet and adds it to a tutor",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "tutorId",
+            "in": "path",
+            "description": "TutorID to assign a pet",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/pet"
+              },
+              "examples": {
+                "tutor": {
+                  "value": {
+                    "name": "Lilo",
+                    "species": "dog",
+                    "carry": "p",
+                    "weight": 5,
+                    "date_of_birth": "1993-12-12 10:10"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/tutor"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pet/{petId}/tutor/{tutorId}": {
+      "put": {
+        "tags": ["Pets"],
+        "summary": "Updates a pet's info",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "petId",
+            "in": "path",
+            "description": "PetID to update a pet",
+            "required": true
+          },
+          {
+            "name": "tutorId",
+            "in": "path",
+            "description": "TutorID assign to the pet",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/pet"
+              },
+              "examples": {
+                "tutor": {
+                  "value": {
+                    "name": "Poppy",
+                    "species": "dog",
+                    "carry": "p",
+                    "weight": 3,
+                    "date_of_birth": "2018-12-12 10:10"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Pets"],
+        "summary": "Deletes a pet from a tutor",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "petId",
+            "in": "path",
+            "description": "PetID to delete a pet",
+            "required": true
+          },
+          {
+            "name": "tutorId",
+            "in": "path",
+            "description": "TutorID assign to the pet",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "tutor": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "date_of_birth": {
+            "type": "string",
+            "format": "date"
+          },
+          "zip_code": {
+            "type": "string"
+          }
+        }
+      },
+      "pet": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "species": {
+            "type": "string"
+          },
+          "carries": {
+            "type": "string"
+          },
+          "weight": {
+            "type": "number"
+          },
+          "date_of_birth": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
