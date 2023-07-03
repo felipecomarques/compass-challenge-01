@@ -13,6 +13,7 @@ export const login = async (req: Request, res: Response) => {
   res.status(200).json({ access_token: token });
 };
 
+// Desconsiderar dashboard. Apenas para testar
 export const dashboard = async (req: CustomRequest, res: Response) => {
   console.log(req.user);
   const luckyNumber = Math.floor(Math.random() * 100);

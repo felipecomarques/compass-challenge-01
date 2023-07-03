@@ -11,9 +11,10 @@ class tutorRepository {
     return newT;
   }
 
-  async updateTutor(id: number, updatedTutor: ITutor): Promise<boolean> {
+  async updateTutor(id: number, updatedTutor: ITutor): Promise<ITutor> {
     const result = await TutorModel.updateOne({ id }, updatedTutor).exec();
-    return result.modifiedCount > 0;
+    //return result.modifiedCount > 0;
+    return updatedTutor;
   }
 
   async deleteTutor(id: number): Promise<boolean> {

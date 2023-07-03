@@ -27,8 +27,8 @@
         "summary": "Retrieves all tutors",
         "security": [{ "bearerAuth": [] }],
         "responses": {
-          "201": {
-            "description": "OK",
+          "200": {
+            "description": "Successfully retrieved all tutors",
             "content": {
               "application/json": {
                 "schema": {
@@ -39,7 +39,7 @@
             }
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "No authorization to access"
           }
         }
       },
@@ -53,12 +53,39 @@
                 "$ref": "#/components/schemas/tutor"
               },
               "examples": {
-                "tutor": {
+                "Jonh Doe": {
                   "value": {
                     "name": "Jonh Doe",
                     "phone": "85989323895",
                     "email": "jose.abreu@compasso.com",
                     "date_of_birth": "1993-12-12 10:10",
+                    "zip_code": "61760000"
+                  }
+                },
+                "Felipe Marques": {
+                  "value": {
+                    "name": "Felipe Marques",
+                    "phone": "999221208",
+                    "email": "felipem@compasso.com",
+                    "date_of_birth": "2001-12-12 10:10",
+                    "zip_code": "61760000"
+                  }
+                },
+                "Anna Costa": {
+                  "value": {
+                    "name": "Anna Costa",
+                    "phone": "999221208",
+                    "email": "annacosta@compasso.com",
+                    "date_of_birth": "2001-12-12 10:10",
+                    "zip_code": "61760000"
+                  }
+                },
+                "Maria Fernanda": {
+                  "value": {
+                    "name": "Maria Fernanda",
+                    "phone": "8812341234",
+                    "email": "mariafer@compasso.com",
+                    "date_of_birth": "2004-12-12 10:10",
                     "zip_code": "61760000"
                   }
                 }
@@ -67,8 +94,8 @@
           }
         },
         "responses": {
-          "200": {
-            "description": "OK",
+          "201": {
+            "description": "Tutor created successfully",
             "content": {
               "application/json": {
                 "schema": {
@@ -77,6 +104,9 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Error with validation or syntax"
           }
         }
       }
@@ -101,13 +131,40 @@
                 "$ref": "#/components/schemas/tutor"
               },
               "examples": {
-                "tutor": {
+                "Jonh Doe": {
+                  "value": {
+                    "name": "Jonh Doe",
+                    "phone": "85989323895",
+                    "email": "jose.abreu@compasso.com",
+                    "date_of_birth": "1993-12-12 10:10",
+                    "zip_code": "61760000"
+                  }
+                },
+                "Felipe Marques": {
                   "value": {
                     "name": "Felipe Marques",
                     "phone": "999221208",
-                    "email": "felipe.m@compasso.com",
+                    "email": "felipem@compasso.com",
                     "date_of_birth": "2001-12-12 10:10",
-                    "zip_code": "63430000"
+                    "zip_code": "61760000"
+                  }
+                },
+                "Anna Costa": {
+                  "value": {
+                    "name": "Anna Costa",
+                    "phone": "999221208",
+                    "email": "annacosta@compasso.com",
+                    "date_of_birth": "2001-12-12 10:10",
+                    "zip_code": "61760000"
+                  }
+                },
+                "Maria Fernanda": {
+                  "value": {
+                    "name": "Maria Fernanda",
+                    "phone": "8812341234",
+                    "email": "mariafer@compasso.com",
+                    "date_of_birth": "2004-12-12 10:10",
+                    "zip_code": "61760000"
                   }
                 }
               }
@@ -116,7 +173,7 @@
         },
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Tutor updated successfully",
             "content": {
               "application/json": {
                 "schema": {
@@ -125,6 +182,9 @@
                 }
               }
             }
+          },
+          "401": {
+            "description": "No authorization to access"
           }
         }
       },
@@ -142,7 +202,13 @@
         ],
         "responses": {
           "204": {
-            "description": "No content"
+            "description": "Successfully deleted"
+          },
+          "401": {
+            "description": "No authorization to access"
+          },
+          "400": {
+            "description": "Cannot delete tutors with associated pets"
           }
         }
       }
@@ -167,13 +233,31 @@
                 "$ref": "#/components/schemas/pet"
               },
               "examples": {
-                "tutor": {
+                "Lilo": {
                   "value": {
                     "name": "Lilo",
                     "species": "dog",
                     "carry": "p",
                     "weight": 5,
                     "date_of_birth": "1993-12-12 10:10"
+                  }
+                },
+                "Poppy": {
+                  "value": {
+                    "name": "Poppy",
+                    "species": "dog",
+                    "carry": "p",
+                    "weight": 3,
+                    "date_of_birth": "2018-12-12 10:10"
+                  }
+                },
+                "Maki":{
+                  "value": {
+                    "name": "Maki",
+                    "species": "cat",
+                    "carry": "m",
+                    "weight": 7,
+                    "date_of_birth": "2020-12-12 10:10"
                   }
                 }
               }
@@ -182,7 +266,7 @@
         },
         "responses": {
           "201": {
-            "description": "Created",
+            "description": "Created pet with the associated tutor",
             "content": {
               "application/json": {
                 "schema": {
@@ -191,6 +275,12 @@
                 }
               }
             }
+          },
+          "401": {
+            "description": "No authorization to access"
+          },
+          "400": {
+            "description": "Error with validation or syntax"
           }
         }
       }
@@ -221,13 +311,31 @@
                 "$ref": "#/components/schemas/pet"
               },
               "examples": {
-                "tutor": {
+                "Lilo": {
+                  "value": {
+                    "name": "Lilo",
+                    "species": "dog",
+                    "carry": "p",
+                    "weight": 5,
+                    "date_of_birth": "1993-12-12 10:10"
+                  }
+                },
+                "Poppy": {
                   "value": {
                     "name": "Poppy",
                     "species": "dog",
                     "carry": "p",
                     "weight": 3,
                     "date_of_birth": "2018-12-12 10:10"
+                  }
+                },
+                "Maki":{
+                  "value": {
+                    "name": "Maki",
+                    "species": "cat",
+                    "carry": "m",
+                    "weight": 7,
+                    "date_of_birth": "2020-12-12 10:10"
                   }
                 }
               }
@@ -236,7 +344,13 @@
         },
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Tutor updated successfully"
+          },
+          "401": {
+            "description": "No authorization to access"
+          },
+          "400": {
+            "description": "Error with validation or syntax"
           }
         }
       },
@@ -259,8 +373,14 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "204": {
+            "description": "Successfully deleted"
+          },
+          "401": {
+            "description": "No authorization to access"
+          },
+          "404": {
+            "description": "Pet not found"
           }
         }
       }

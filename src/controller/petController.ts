@@ -17,7 +17,7 @@ class petsController {
       const pet = await this.petService.create(idTutor, newPet);
       res.status(201).json(pet);
     } catch (error) {
-      res.status(500).json({ error: error });
+      res.status(400).json({ error: error });
     }
   };
 
@@ -32,12 +32,12 @@ class petsController {
       if (updatedPet) {
         res
           .status(200)
-          .json({ message: "Pet updated successfully", updated_pet: petData });
+          .json({ updated_info: petData });
       } else {
         res.status(404).json({ message: "Pet not found" });
       }
     } catch (error) {
-      res.status(500).json({ error: error });
+      res.status(400).json({ error: error });
     }
   };
 
@@ -49,12 +49,12 @@ class petsController {
 
       const deleted = await this.petService.delete(tutorId, petId);
       if (deleted) {
-        res.status(200).json({ message: "Pet deleted successfully" });
+        res.status(204).end();
       } else {
         res.status(404).json({ message: "Pet not found" });
       }
     } catch (error) {
-      res.status(500).json({ error: error });
+      res.status(404).json({ error: error });
     }
   };
 }
