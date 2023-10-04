@@ -4,6 +4,8 @@
         "source.fixAll.eslint": true
     },
     "material-icon-theme.folders.associations": {
-        "repositories": "interface"
+        "repositories": "interface",
+        "services": "rules",
+        "infrastructure": "tools"
     }
 }

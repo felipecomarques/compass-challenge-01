@@ -1,4 +1,4 @@
-import { IPet, TutorModel } from "../models/model";
+import { IPet, TutorModel } from "./models/tutorModel";
 
 class petRepository {
   async getPets(tutorId: number): Promise<IPet[]> {
