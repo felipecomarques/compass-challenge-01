@@ -1,11 +1,97 @@
+# Veterinary Clinic API
+A Veterinary Clinic API for managing veterinary services.
 
-# Compass Challenge
+## 💻 Overview
+A Veterinary Clinic API built with Node.js and Express for managing veterinary services. A client needs a new microservice for its veterinary franchise. This microservice will be used by all the clinics they own for internal client and attendances management.
 
-A Veterinary Clinic API built with Node.js and Express for managing veterinary services. A client hired Compass to build a new microservice for its veterinary franchise. This microservice will be used by all the clinics they own for internal client and attendances management.
+This project was made for a [Compass UOL](https://compass.uol/en/home/) challenge.
 
+### 💿 Technologies
+![Technologies](https://skillicons.dev/icons?i=ts,jest,mongodb,express,nodejs)
 
+### 📊 Diagrams
+<details>
+<summary><strong>Class Diagram</strong></summary>
+<br/>
 
-## Installation
+```mermaid
+---
+title: Veterinary Clinic - Class Diagram
+---
+
+classDiagram
+    direction LR
+    class Tutor {
+        -name: string
+        -email: string
+        -password: string
+        -phone: string
+        -dateOfBirth: date
+        -zipCode: string
+        -pets: pets[]
+        +get()
+        +create()
+        +edit()
+        +delete ()
+    }
+    class Pet {
+        -name: string
+        -species: string
+        -carry: string
+        -weight: int
+        -dateOfBirth: date
+        +create()
+        +edit()
+        +delete ()
+    }
+    Tutor *-- Pet : owns
+```
+</details>
+
+## 📄 Documentation
+![image](https://github.com/felipecomarques/compass-challenge-01/assets/57302703/b2e27c7c-1f0b-473d-b252-214a01fc3a26)
+
+The API documentation is available through Swagger. You can access it by opening the following URL in your web browser after starting the development server: [http://localhost:3000/api-docs/](http://localhost:3000/api-docs/)
+
+In the documentation, you can view request and response schemas, and even execute operations directly. It provides a convenient way to understand and interact with the API without the need for additional tools or clients.
+
+## 🔀 API Reference
+
+<details>
+<summary><strong>Auth</strong></summary>
+<br/>
+
+| **Method** | **Route** | **Operation**     | **Authentication** |
+|:----------:|-----------|-------------------|--------------------|
+|    POST    | /auth     | Authenticate user | No                 |
+
+</details>
+
+<details>
+<summary><strong>Tutor</strong></summary>
+<br/>
+
+| **Method** | **Route**        | **Operation**            | **Authentication** |
+|:----------:|------------------|--------------------------|--------------------|
+|     GET    | /tutor           | Retrieves all tutors     | Yes                |
+|    POST    | /tutor           | Create new tutor         | No                 |
+|     PUT    | /tutor/{tutorId} | Updates existing tutor   | Yes                |
+|   DELETE   | /tutor/{tutorId} | Delete an existing tutor | Yes                |
+
+</details>
+
+<details>
+<summary><strong>Pet</strong></summary>
+<br/>
+
+| **Method** | **Route**                    | **Operation**          | **Authentication** |
+|:----------:|------------------------------|------------------------|--------------------|
+|    POST    | /pet/{tutorId}               | Create new pet         | Yes                |
+|     PUT    | /pet/{petId}/tutor/{tutorId} | Updates existing pet   | Yes                |
+|   DELETE   | /pet/{petId}/tutor/{tutorId} | Delete an existing pet | Yes                |
+</details>
+
+## ⏬ Installation
 
 To run this project locally, please follow these steps:
 1. Clone the repository:
@@ -36,20 +122,10 @@ JWT_SECRET=<your-jwt-secret>
 
 6. Start the development server:
 ```bash
-npm start
+npm run dev
 ```
 
-The server will start running on http://localhost:5000. You can access the application by opening this URL in your web browser.
-## Documentation and Swagger
+The server will start running on http://localhost:3000. You can access the application by opening this URL in your web browser.
 
-The API documentation is available through Swagger. You can access it by opening the following URL in your web browser after starting the development server:
-
-[http://localhost:5000/api-docs/](http://localhost:5000/api-docs/)
-
-In the documentation, you can view request and response schemas, and even execute operations directly. It provides a convenient way to understand and interact with the API without the need for additional tools or clients.
-
-## Screenshot
-
-![Captura de tela](https://github.com/felipecomarques/nodejs-basics/assets/57302703/d795511a-a406-4ed5-893e-83741f23ee2a)
-
-Screenshot demonstrating the project. It shows the registration of a tutor and a pet using the POST methods, and the retrieval using the GET method. It uses the [Insomnia](https://insomnia.rest/download) application to perform these operations, but you can also refer to the API documentation if it better suits your needs.
+## ⚖️ License
+Code released under the [MIT LICENSE]().
