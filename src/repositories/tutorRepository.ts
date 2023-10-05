@@ -1,5 +1,4 @@
-// import { type TutorModel } from './models/tutorModel'
-import { prisma } from 'src/config/infrastructure/prismaClient'
+import { prisma } from '@infra/prismaClient'
 import { type Tutor } from '@prisma/client'
 
 export class TutorRepository {

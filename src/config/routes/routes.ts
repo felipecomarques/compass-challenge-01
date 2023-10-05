@@ -1,20 +1,19 @@
-import express from "express";
-import { login } from "../auth/authUtils";
-import { authMiddleware } from "../auth/middleware";
-import tutorsController from "../controller/tutorsController";
-import petsController from "../controller/petController";
+import { Router } from 'express'
+import { Index } from '..'
+import { TutorsController } from '@controller/tutorsController'
+// import { login } from "../auth/authUtils";
+// import { authMiddleware } from '../auth/middleware'
+// import petsController from '../controller/petController'
 
-const router = express.Router();
+export const router = Router()
+const tutorsController = new TutorsController()
 
-router.post("/auth", login);
+router.get('/', Index)
+router.get('/tutor', tutorsController.getAllTutors)
+router.post('/tutor', tutorsController.createTutor)
+router.put('/tutor/:id', tutorsController.updateTutor)
+router.delete('/tutor/:id', tutorsController.deleteTutor)
 
-router.get("/tutors", authMiddleware, tutorsController.getTutor);
-router.post("/tutors", tutorsController.createTutor);
-router.put("/tutors/:id", authMiddleware, tutorsController.updateTutor);
-router.delete("/tutors/:id", authMiddleware, tutorsController.deleteTutor);
-
-router.post("/pet/:tutorId", authMiddleware, petsController.createPet);
-router.put("/pet/:petId/tutor/:tutorId", authMiddleware, petsController.updatePet);
-router.delete("/pet/:petId/tutor/:tutorId", authMiddleware, petsController.deletePet);
-
-export default router;
+// router.post('/pet/:tutorId', authMiddleware, petsController.createPet)
+// router.put('/pet/:petId/tutor/:tutorId', authMiddleware, petsController.updatePet)
+// router.delete('/pet/:petId/tutor/:tutorId', authMiddleware, petsController.deletePet)
