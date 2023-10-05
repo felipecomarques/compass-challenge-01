@@ -3,7 +3,21 @@ import { type Tutor } from '@prisma/client'
 
 export class TutorRepository {
   async getAllTutors (): Promise<Tutor[]> {
-    return await prisma.tutor.findMany({ include: { pets: true } })
+    return await prisma.tutor.findMany({
+      include: {
+        pets: {
+          select: {
+            id: true,
+            name: true,
+            species: true,
+            carry: true,
+            weight: true,
+            dateOfBirth: true,
+            tutorId: false
+          }
+        }
+      }
+    })
   }
 
   async createTutor (tutorData: Tutor): Promise<Tutor> {

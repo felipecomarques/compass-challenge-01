@@ -21,11 +21,17 @@
     }
   ],
   "paths": {
-    "/tutors": {
+    "/tutor": {
       "get": {
-        "tags": ["Tutors"],
+        "tags": [
+          "Tutors"
+        ],
         "summary": "Retrieves all tutors",
-        "security": [{ "bearerAuth": [] }],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "responses": {
           "200": {
             "description": "Successfully retrieved all tutors",
@@ -44,7 +50,9 @@
         }
       },
       "post": {
-        "tags": ["Tutors"],
+        "tags": [
+          "Tutors"
+        ],
         "summary": "Create a new tutor",
         "requestBody": {
           "content": {
@@ -111,11 +119,17 @@
         }
       }
     },
-    "/tutors/{id}": {
+    "/tutor/{id}": {
       "put": {
-        "tags": ["Tutors"],
+        "tags": [
+          "Tutors"
+        ],
         "summary": "Updates a tutor",
-        "security": [{ "bearerAuth": [] }],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
           {
             "name": "id",
@@ -189,9 +203,15 @@
         }
       },
       "delete": {
-        "tags": ["Tutors"],
+        "tags": [
+          "Tutors"
+        ],
         "summary": "Deletes a tutor",
-        "security": [{ "bearerAuth": [] }],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
           {
             "name": "id",
@@ -215,9 +235,15 @@
     },
     "/pet/{tutorId}": {
       "post": {
-        "tags": ["Pets"],
+        "tags": [
+          "Pets"
+        ],
         "summary": "Creates a pet and adds it to a tutor",
-        "security": [{ "bearerAuth": [] }],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
           {
             "name": "tutorId",
@@ -251,7 +277,7 @@
                     "date_of_birth": "2018-12-12 10:10"
                   }
                 },
-                "Maki":{
+                "Maki": {
                   "value": {
                     "name": "Maki",
                     "species": "cat",
@@ -287,9 +313,15 @@
     },
     "/pet/{petId}/tutor/{tutorId}": {
       "put": {
-        "tags": ["Pets"],
+        "tags": [
+          "Pets"
+        ],
         "summary": "Updates a pet's info",
-        "security": [{ "bearerAuth": [] }],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
           {
             "name": "petId",
@@ -329,7 +361,7 @@
                     "date_of_birth": "2018-12-12 10:10"
                   }
                 },
-                "Maki":{
+                "Maki": {
                   "value": {
                     "name": "Maki",
                     "species": "cat",
@@ -355,9 +387,15 @@
         }
       },
       "delete": {
-        "tags": ["Pets"],
+        "tags": [
+          "Pets"
+        ],
         "summary": "Deletes a pet from a tutor",
-        "security": [{ "bearerAuth": [] }],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
           {
             "name": "petId",

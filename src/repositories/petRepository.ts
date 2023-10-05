@@ -21,41 +21,39 @@ export class PetRepository {
     return newPet
   }
 
-  // async updatePet (
-  //   tutorId: number,
-  //   petId: number,
-  //   updatedPet: IPet
-  // ): Promise<boolean> {
-  //   const tutor = await TutorModel.findOne({ id: tutorId }).exec()
-  //   if (!tutor) {
-  //     throw new Error('Tutor not found')
-  //   }
+  async updatePet (tutorIdParams: string, petIdParams: string, petData: Pet): Promise<Pet | null> {
+    if (tutorIdParams == null || tutorIdParams === '' || petIdParams == null || petIdParams === '') {
+      return null
+    }
 
-  //   const pet = tutor.pets.find((pet) => pet.id === petId)
-  //   if (!pet) {
-  //     throw new Error('Pet not found')
-  //   }
+    const { name, species, carry, weight, dateOfBirth, tutorId = tutorIdParams } = petData
+    const updatedPet = await prisma.pet.update({
+      where: {
+        id: petIdParams
+      },
+      data: {
+        name,
+        species,
+        carry,
+        weight,
+        dateOfBirth,
+        tutorId
+      }
+    })
+    return updatedPet
+  }
 
-  //   Object.assign(pet, updatedPet)
-  //   await tutor.save()
+  async deletePet (tutorIdParams: string, petIdParams: string): Promise<Pet | null> {
+    if (tutorIdParams == null || tutorIdParams === '' || petIdParams == null || petIdParams === '') {
+      return null
+    }
 
-  //   return true
-  // }
-
-  // async deletePet (tutorId: number, petId: number): Promise<boolean> {
-  //   const tutor = await TutorModel.findOne({ id: tutorId }).exec()
-  //   if (!tutor) {
-  //     throw new Error('Tutor not found')
-  //   }
-
-  //   const petIndex = tutor.pets.findIndex((pet) => pet.id === petId)
-  //   if (petIndex === -1) {
-  //     throw new Error('Pet not found')
-  //   }
-
-  //   tutor.pets.splice(petIndex, 1)
-  //   await tutor.save()
-
-  //   return true
-  // }
+    const deletedPet = await prisma.pet.delete({
+      where: {
+        id: petIdParams,
+        tutorId: tutorIdParams
+      }
+    })
+    return deletedPet
+  }
 }
