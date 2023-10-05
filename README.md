@@ -7,10 +7,10 @@ A Veterinary Clinic API built with Node.js and Express for managing veterinary s
 This project was made for a [Compass UOL](https://compass.uol/en/home/) challenge.
 
 ### 💿 Technologies
-![Technologies](https://skillicons.dev/icons?i=ts,jest,mongodb,express,nodejs)
+![Technologies](https://skillicons.dev/icons?i=ts,jest,prisma,mongodb,babel,express,nodejs)
 
 ### 📊 Diagrams
-<details>
+<details open>
 <summary><strong>Class Diagram</strong></summary>
 <br/>
 
@@ -49,9 +49,9 @@ classDiagram
 </details>
 
 ## 📄 Documentation
-![image](https://github.com/felipecomarques/compass-challenge-01/assets/57302703/b2e27c7c-1f0b-473d-b252-214a01fc3a26)
+<!-- ![image](https://github.com/felipecomarques/compass-challenge-01/assets/57302703/b2e27c7c-1f0b-473d-b252-214a01fc3a26) -->
 
-The API documentation is available through Swagger. You can access it by opening the following URL in your web browser after starting the development server: [http://localhost:3000/api-docs/](http://localhost:3000/api-docs/)
+The API documentation is available through Swagger. You can access it by opening the following URL in your web browser after starting the server: [http://localhost:3000/api-docs/](http://localhost:5000/api-docs/)
 
 In the documentation, you can view request and response schemas, and even execute operations directly. It provides a convenient way to understand and interact with the API without the need for additional tools or clients.
 
@@ -93,6 +93,10 @@ In the documentation, you can view request and response schemas, and even execut
 
 ## ⏬ Installation
 
+<details>
+<summary><strong>Inicial setup</strong></summary>
+<br/>
+    
 To run this project locally, please follow these steps:
 1. Clone the repository:
 ```bash
@@ -109,23 +113,44 @@ cd <project-directory>
 npm install
 ```
 
-4. Compile the files to JavaScript: 
+4. Generate files for a Prisma ORM data model: 
 ```bash
-tsc
+npm run database
 ```
 
-5. Create a .env file in the root directory of the project and set the following variables:
-```bash
+5. Create a .env file in the root directory of the project (you can use the exemple in the root folder):
+```javascript
 MONGO_URI=<your-mongo-uri>
-JWT_SECRET=<your-jwt-secret>
 ```
+</details>
 
-6. Start the development server:
+<details>
+<summary><strong>Use development environment</strong></summary>
+<br/>
+    
+1. Start the development server:
 ```bash
 npm run dev
 ```
 
-The server will start running on http://localhost:3000. You can access the application by opening this URL in your web browser.
+The server will start running on http://localhost:5000. You can access the application by opening this URL in your web browser.
+</details>
+
+<details>
+<summary><strong>Use production environment</strong></summary>
+<br/>
+
+1. Build the app to JavaScript:
+```bash
+npm run build
+```
+
+2. Start the production server:
+```bash
+npm start
+```
+The server will start running on http://localhost:5000. You can access the application by opening this URL in your web browser.
+</details>
 
 ## ⚖️ License
 Code released under the [MIT LICENSE]().
