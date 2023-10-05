@@ -15,6 +15,7 @@ model Tutor {
   email       String
   dateOfBirth DateTime
   zipCode     String
+  pets        Pet[]
 }
 
 model Pet {
@@ -24,4 +25,6 @@ model Pet {
   carry       String
   weight      Float
   dateOfBirth DateTime
+  Tutor       Tutor    @relation(fields: [tutorId], references: [id])
+  tutorId     String   @db.ObjectId
 }

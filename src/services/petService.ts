@@ -1,21 +1,16 @@
-import petRepository from "../repositories/petRepository";
+import { PetRepository } from '@repositories/petRepository'
+import { type Pet } from '@prisma/client'
 
-class petService {
-  async create(tutorId: number, body: any) {
-    const pets = await new petRepository().getPets(tutorId);
-    const lastPet = pets[pets.length - 1];
-    const newId = lastPet ? lastPet.id + 1 : 1;
-    body.id = newId;
-    return await new petRepository().createPet(tutorId, body);
+export class PetService {
+  async create (tutorId: string, petData: Pet): Promise<Pet | null> {
+    return new PetRepository().createPet(tutorId, petData)
   }
 
-  async update(tutorId: number, petId: number, body: any) {
-    return await new petRepository().updatePet(tutorId, petId, body);
-  }
+  // async update (tutorId: number, petId: number, body: any) {
+  //   return await new petRepository().updatePet(tutorId, petId, body)
+  // }
 
-  async delete(tutorId: number, petId: number) {
-    return await new petRepository().deletePet(tutorId, petId);
-  }
+  // async delete (tutorId: number, petId: number) {
+  //   return await new petRepository().deletePet(tutorId, petId)
+  // }
 }
-
-export default petService;
