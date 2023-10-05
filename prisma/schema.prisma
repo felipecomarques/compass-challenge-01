@@ -10,6 +10,7 @@ datasource db {
 model Tutor {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
   name        String
+  password    String
   phone       String
   email       String
   dateOfBirth DateTime

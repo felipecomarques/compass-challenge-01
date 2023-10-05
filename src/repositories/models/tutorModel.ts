@@ -4,6 +4,7 @@
 export interface TutorModel {
   id?: string
   name: string
+  password: string
   phone: string
   email: string
   dateOfBirth: Date
