@@ -1,5 +1,6 @@
 import { type Request, type Response } from 'express'
 import { TutorService } from '@services/tutorService'
+import { handleError } from '@config/error/errorHandler'
 
 export class TutorsController {
   getAllTutors = async (req: Request, res: Response): Promise<void> => {
@@ -7,7 +8,7 @@ export class TutorsController {
       const result = await new TutorService().getAllTutors()
       res.status(200).json(result)
     } catch (error) {
-      res.status(400).json({ message: 'Failed', error })
+      handleError(res, error)
     }
   }
 
@@ -16,7 +17,7 @@ export class TutorsController {
       const result = await new TutorService().createTutor(req.body)
       res.status(201).json(result)
     } catch (error) {
-      res.status(400).json({ message: 'Failed', error })
+      handleError(res, error)
     }
   }
 
@@ -26,7 +27,7 @@ export class TutorsController {
       const result = await new TutorService().updateTutor(idTutor, req.body)
       res.status(200).json(result)
     } catch (error) {
-      res.status(400).json({ message: 'Failed', error })
+      handleError(res, error)
     }
   }
 
@@ -36,7 +37,7 @@ export class TutorsController {
       await new TutorService().deleteTutor(idTutor)
       res.status(204).end()
     } catch (error) {
-      res.status(400).json({ message: 'Failed', error })
+      handleError(res, error)
     }
   }
 }
