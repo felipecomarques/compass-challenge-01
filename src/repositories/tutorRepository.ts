@@ -1,5 +1,6 @@
-import { prisma } from '@infra/prismaClient'
+import { prisma } from '@config/database/prismaClient'
 import { type Tutor } from '@prisma/client'
+import bcrypt from 'bcrypt'
 
 export class TutorRepository {
   async getAllTutors (): Promise<Tutor[]> {
@@ -22,10 +23,14 @@ export class TutorRepository {
 
   async createTutor (tutorData: Tutor): Promise<Tutor> {
     const { name, password, phone, email, dateOfBirth, zipCode } = tutorData
+
+    const salt = await bcrypt.genSalt(10)
+    const hashedPassword = await bcrypt.hash(password, salt)
+
     const newTutor = await prisma.tutor.create({
       data: {
         name,
-        password,
+        password: hashedPassword,
         phone,
         email,
         dateOfBirth,
