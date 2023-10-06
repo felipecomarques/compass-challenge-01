@@ -1,62 +1,37 @@
-import { Request, Response } from "express";
-import petService from "../services/petService";
+import { type Request, type Response } from 'express'
+import { PetService } from '@services/petService'
+import { handleError } from '@config/error/errorHandler'
 
-class petsController {
-  private petService: petService;
-
-  constructor() {
-    this.petService = new petService();
+export class PetController {
+  createPet = async (req: Request, res: Response): Promise<void> => {
+    try {
+      const idTutor = req.params.tutorId
+      const result = await new PetService().createPet(idTutor, req.body)
+      res.status(201).json(result)
+    } catch (error) {
+      handleError(res, error)
+    }
   }
 
-  // POST/pet/:tutor -> Creates a pet and adds it to. (AUTH REQUIRED!)
-  createPet = async (req: Request, res: Response) => {
+  updatePet = async (req: Request, res: Response): Promise<void> => {
     try {
-      const idTutor = parseInt(req.params.tutorId);
-      const newPet = req.body;
-
-      const pet = await this.petService.create(idTutor, newPet);
-      res.status(201).json(pet);
+      const tutorId = req.params.tutorId
+      const petId = req.params.petId
+      const result = await new PetService().updatePet(tutorId, petId, req.body)
+      res.status(200).json(result)
     } catch (error) {
-      res.status(400).json({ error: error });
+      handleError(res, error)
     }
-  };
+  }
 
-  // PUT/pet/:petId/tutor/:tutorId -> updates a pet's info. (AUTH REQUIRED!)
-  updatePet = async (req: Request, res: Response) => {
+  deletePet = async (req: Request, res: Response): Promise<void> => {
     try {
-      const tutorId = parseInt(req.params.tutorId, 10);
-      const petId = parseInt(req.params.petId, 10);
-      const petData = req.body;
-
-      const updatedPet = await this.petService.update(tutorId, petId, petData);
-      if (updatedPet) {
-        res
-          .status(200)
-          .json({ updated_info: petData });
-      } else {
-        res.status(404).json({ message: "Pet not found" });
-      }
+      const tutorId = req.params.tutorId
+      const petId = req.params.petId
+      const result = await new PetService().deletePet(tutorId, petId)
+      res.status(204).json(result)
     } catch (error) {
-      res.status(400).json({ error: error });
+      handleError(res, error)
     }
-  };
-
-  // DELETE/pet/:petId/tutor/:tutorI -> deletes a pet from a tutor. (AUTH REQUIRED!)
-  deletePet = async (req: Request, res: Response) => {
-    try {
-      const tutorId = parseInt(req.params.tutorId, 10);
-      const petId = parseInt(req.params.petId, 10);
-
-      const deleted = await this.petService.delete(tutorId, petId);
-      if (deleted) {
-        res.status(204).end();
-      } else {
-        res.status(404).json({ message: "Pet not found" });
-      }
-    } catch (error) {
-      res.status(404).json({ error: error });
-    }
-  };
+  }
 }
-
-export default new petsController();

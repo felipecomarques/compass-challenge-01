@@ -1,0 +1,11 @@
+{
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "material-icon-theme.folders.associations": {
+        "repositories": "interface",
+        "services": "rules",
+        "infrastructure": "tools"
+    }
+}

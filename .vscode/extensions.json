@@ -1,0 +1,7 @@
+{
+    "recommendations": [
+        "prisma.prisma",
+        "pkief.material-icon-theme",
+        "dbaeumer.vscode-eslint"
+    ]
+}

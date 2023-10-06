@@ -1,29 +1,20 @@
-import tutorRepository from "../repositories/tutorRepository";
+import { TutorRepository } from '@repositories/tutorRepository'
+import { type Tutor } from '@prisma/client'
 
-class tutorService {
-  async select() {
-    return await new tutorRepository().getTutors();
+export class TutorService {
+  async getAllTutors (): Promise<Tutor[]> {
+    return await new TutorRepository().getAllTutors()
   }
 
-  async create(body: any) {
-    const tutors = await new tutorRepository().getTutors();
-    const lastTutor = tutors.length > 0 ? tutors[tutors.length - 1] : null;
-    const newId = lastTutor ? lastTutor.id + 1 : 1;
-    body.id = newId;
-    return await new tutorRepository().createTutor(body);
+  async createTutor (tutorData: Tutor): Promise<Tutor> {
+    return await new TutorRepository().createTutor(tutorData)
   }
 
-  async update(id: number, body: any) {
-    return await new tutorRepository().updateTutor(id, body);
+  async updateTutor (id: string, tutorData: Tutor): Promise<Tutor> {
+    return await new TutorRepository().updateTutor(id, tutorData)
   }
 
-  async delete(id: number) {
-    const hasPets = await new tutorRepository().hasPets(id);
-    if (hasPets) {
-      throw new Error("Cannot delete tutor with associated pets");
-    }
-    return await new tutorRepository().deleteTutor(id);
+  async deleteTutor (id: string): Promise<Tutor> {
+    return await new TutorRepository().deleteTutor(id)
   }
 }
-
-export default tutorService;
