@@ -6,6 +6,9 @@ export function handleError (res: Response, error: Error): void {
   if (error instanceof Prisma.PrismaClientKnownRequestError) {
     if (error.code === 'P2014') {
       res.status(409).json({ error: 'Cannot delete due to dependencies' })
+    } else if (error.code === 'P2002') {
+      const failedField = error.meta?.target as string
+      res.status(409).json({ error: `Duplicate ${failedField}` })
     } else {
       res.status(400).json({ error: 'Invalid request' })
     }

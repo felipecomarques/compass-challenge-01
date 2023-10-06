@@ -8,7 +8,7 @@
     "start": "node dist/app.js",
     "dev": "ts-node-dev -r tsconfig-paths/register --respawn --transpile-only --ignore-watch node_modules --no-notify src/app.ts",
     "test": "jest",
-    "database": "prisma generate"
+    "database": "prisma db push && prisma generate"
   },
   "keywords": [],
   "author": "Felipe Marques",

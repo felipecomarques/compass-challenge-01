@@ -1,4 +1,4 @@
-import { prisma } from '@infra/prismaClient'
+import { prisma } from '@config/database/prismaClient'
 import { type Pet } from '@prisma/client'
 
 export class PetRepository {

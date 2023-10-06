@@ -12,7 +12,7 @@ model Tutor {
   name        String
   password    String
   phone       String
-  email       String
+  email       String   @unique
   dateOfBirth DateTime
   zipCode     String
   pets        Pet[]
