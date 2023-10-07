@@ -1,7 +1,8 @@
 import { type Request, type Response, type NextFunction } from 'express'
 import { verify } from 'jsonwebtoken'
 
-export function authMiddleware (req: Request, res: Response, next: NextFunction): Response<any, Record<string, any>> | undefined {
+export function authMiddleware (req: Request, res: Response, next: NextFunction):
+Response<any, Record<string, any>> | undefined {
   const authToken = req.headers.authorization
 
   if (authToken == null) {

@@ -8,8 +8,8 @@ import swaggerDocs from '@config/doc/swagger.json'
 
 export const routes = Router()
 
-routes.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs))
 routes.get('/', Index)
+routes.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs))
 routes.post('/auth', AuthController)
 routes.use(tutorRoutes)
 routes.use(petRoutes)

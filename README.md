@@ -49,7 +49,7 @@ classDiagram
 </details>
 
 ## 📄 Documentation
-<!-- ![image](https://github.com/felipecomarques/compass-challenge-01/assets/57302703/b2e27c7c-1f0b-473d-b252-214a01fc3a26) -->
+![doc](docs/resource/image/swagger.png 'swagger')
 
 The API documentation is available through Swagger. You can access it by opening the following URL in your web browser after starting the server: [http://localhost:3000/api-docs/](http://localhost:5000/api-docs/)
 
