@@ -20,6 +20,7 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "strictNullChecks": true,
+    "strict": true,
     "baseUrl": ".",
     "paths": {
       "@controller/*": [

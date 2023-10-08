@@ -42,13 +42,17 @@ export class TutorRepository {
 
   async updateTutor (id: string, tutorData: Tutor): Promise<Tutor> {
     const { name, password, phone, email, dateOfBirth, zipCode } = tutorData
+
+    const salt = await bcrypt.genSalt(10)
+    const hashedPassword = await bcrypt.hash(password, salt)
+
     const updatedTutor = await prisma.tutor.update({
       where: {
         id
       },
       data: {
         name,
-        password,
+        password: hashedPassword,
         phone,
         email,
         dateOfBirth,
