@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import { Index } from '@controller/indexController'
-import { AuthController } from '@controller/authController'
+import { AuthController } from '@config/utils/auth/authController'
 import { tutorRoutes } from './tutorRoutes'
 import { petRoutes } from './petRoutes'
 import swaggerUi from 'swagger-ui-express'

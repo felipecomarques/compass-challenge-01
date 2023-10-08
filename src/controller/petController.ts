@@ -1,6 +1,6 @@
 import { type Request, type Response } from 'express'
 import { PetService } from '@services/petService'
-import { handleError } from '@config/error/errorHandler'
+import { handleError } from '@config/utils/errorHandler'
 
 export class PetController {
   createPet = async (req: Request, res: Response): Promise<void> => {

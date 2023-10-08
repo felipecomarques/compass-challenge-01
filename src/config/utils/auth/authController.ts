@@ -1,4 +1,4 @@
-import { AuthRepository } from '@repositories/authRepository'
+import { AuthRepository } from '@config/utils/auth/authRepository'
 import { type Request, type Response } from 'express'
 
 export const AuthController = async (req: Request, res: Response):

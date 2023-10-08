@@ -1,6 +1,6 @@
 import { type Request, type Response } from 'express'
 import { TutorService } from '@services/tutorService'
-import { handleError } from '@config/error/errorHandler'
+import { handleError } from '@config/utils/errorHandler'
 
 export class TutorsController {
   getAllTutors = async (req: Request, res: Response): Promise<void> => {
