@@ -19,12 +19,12 @@ model Tutor {
 }
 
 model Pet {
-  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
   name        String
   species     String
   carry       String
   weight      Float
-  dateOfBirth String
-  Tutor       Tutor  @relation(fields: [tutorId], references: [id])
-  tutorId     String @db.ObjectId
+  dateOfBirth DateTime
+  Tutor       Tutor    @relation(fields: [tutorId], references: [id])
+  tutorId     String   @db.ObjectId
 }

@@ -11,7 +11,7 @@ export function handleError (res: Response, error: unknown): void {
       const failedField = error.meta?.target as string
       res.status(409).json({ error: `Duplicate ${failedField}` })
     } else {
-      res.status(400).json({ error: 'Invalid request' })
+      res.status(400).json({ error: 'Invalid request', msg: error })
     }
   } else if (error instanceof Prisma.PrismaClientValidationError) {
     res.status(422).json({ error: 'Validation error' })

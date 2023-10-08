@@ -260,6 +260,9 @@
           "401": {
             "description": "Missing token or invalid token"
           },
+          "409": {
+            "description": "Conflict between dependencies (did you try to delete a tutor with an associated pet?)"
+          },
           "500": {
             "description": "Internal server error"
           }
