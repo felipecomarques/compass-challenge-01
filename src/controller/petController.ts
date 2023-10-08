@@ -24,6 +24,17 @@ export class PetController {
     }
   }
 
+  patchPet = async (req: Request, res: Response): Promise<void> => {
+    try {
+      const tutorId = req.params.tutorId
+      const petId = req.params.petId
+      const result = await new PetService().patchPet(tutorId, petId, req.body)
+      res.status(200).json(result)
+    } catch (error) {
+      handleError(res, error)
+    }
+  }
+
   deletePet = async (req: Request, res: Response): Promise<void> => {
     try {
       const tutorId = req.params.tutorId
