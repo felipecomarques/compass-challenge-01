@@ -1,5 +1,5 @@
-import { TutorRepository } from '@repositories/tutorRepository'
-import { TutorSchema } from '@services/schema/tutorSchema'
+import { TutorRepository, type PatchTutor } from '@repositories/tutorRepository'
+import { TutorPatch, TutorSchema } from '@services/schema/tutorSchema'
 import { type Tutor } from '@prisma/client'
 
 export class TutorService {
@@ -13,6 +13,10 @@ export class TutorService {
 
   async updateTutor (id: string, tutorData: Tutor): Promise<Tutor> {
     return await new TutorRepository().updateTutor(id, TutorSchema.parse(tutorData))
+  }
+
+  async patchTutor (id: string, tutorData: PatchTutor): Promise<Tutor | null> {
+    return await new TutorRepository().patchTutor(id, TutorPatch.parse(tutorData))
   }
 
   async deleteTutor (id: string): Promise<Tutor> {

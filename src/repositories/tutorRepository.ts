@@ -62,8 +62,30 @@ export class TutorRepository {
     return updatedTutor
   }
 
+  async patchTutor (id: string, tutorData: PatchTutor): Promise<Tutor | null> {
+    if (tutorData.password != null) {
+      const salt = await bcrypt.genSalt(10)
+      tutorData.password = await bcrypt.hash(tutorData.password, salt)
+    }
+
+    const updatedTutor = await prisma.tutor.update({
+      where: { id },
+      data: tutorData
+    })
+    return updatedTutor
+  }
+
   async deleteTutor (id: string): Promise<Tutor> {
     const deletedTutor = await prisma.tutor.delete({ where: { id } })
     return deletedTutor
   }
+}
+
+export interface PatchTutor {
+  name?: string
+  password?: string
+  phone?: string
+  email?: string
+  dateOfBirth?: Date
+  zipCode?: string
 }

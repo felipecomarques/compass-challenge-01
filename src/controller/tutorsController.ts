@@ -31,6 +31,16 @@ export class TutorsController {
     }
   }
 
+  patchTutor = async (req: Request, res: Response): Promise<void> => {
+    try {
+      const idTutor = req.params.id
+      const result = await new TutorService().patchTutor(idTutor, req.body)
+      res.status(200).json(result)
+    } catch (error) {
+      handleError(res, error)
+    }
+  }
+
   deleteTutor = async (req: Request, res: Response): Promise<void> => {
     try {
       const idTutor = req.params.id
