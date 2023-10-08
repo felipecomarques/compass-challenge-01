@@ -45,6 +45,7 @@
     "joi": "^17.9.2",
     "jsonwebtoken": "^9.0.0",
     "swagger-jsdoc": "^6.2.8",
-    "swagger-ui-express": "^4.6.3"
+    "swagger-ui-express": "^4.6.3",
+    "zod": "^3.22.4"
   }
 }

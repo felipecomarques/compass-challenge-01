@@ -10,4 +10,5 @@ app.use(routes)
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`)
+  console.log(`You can check the documentation at: http://localhost:${PORT}/api-docs/`)
 })
