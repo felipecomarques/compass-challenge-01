@@ -21,6 +21,10 @@ export class TutorRepository {
     })
   }
 
+  async findTutor (id: string): Promise<Tutor> {
+    return await prisma.tutor.findUniqueOrThrow({ where: { id } })
+  }
+
   async createTutor (tutorData: Tutor): Promise<Tutor> {
     const { name, password, phone, email, dateOfBirth, zipCode } = tutorData
 

@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { Index } from '@controller/indexController'
+import { Index } from '@config/utils/indexController'
 import { AuthController } from '@config/utils/auth/authController'
 import { tutorRoutes } from './tutorRoutes'
 import { petRoutes } from './petRoutes'

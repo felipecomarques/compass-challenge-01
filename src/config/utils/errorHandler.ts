@@ -10,11 +10,13 @@ export function handleError (res: Response, error: unknown): void {
     } else if (error.code === 'P2002') {
       const failedField = error.meta?.target as string
       res.status(409).json({ error: `Duplicate ${failedField}` })
+    } else if (error.code === 'P2025') {
+      res.status(404).json({ error: 'Entity not found' })
     } else {
       res.status(400).json({ error: 'Invalid request', msg: error })
     }
   } else if (error instanceof Prisma.PrismaClientValidationError) {
-    res.status(422).json({ error: 'Validation error' })
+    res.status(422).json({ error: 'Validation error', msg: error })
   } else if (error instanceof ZodError) {
     const validationErrors: Record<string, string[]> = {}
 

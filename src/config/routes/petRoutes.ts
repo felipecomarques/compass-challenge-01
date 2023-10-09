@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import { PetController } from '@controller/petController'
-import { authMiddleware } from '@config/middleware/ensureAuth'
+import { authMiddleware } from '@config/utils/auth/middleware/ensureAuth'
 
 export const petRoutes = Router()
 const petController = new PetController()

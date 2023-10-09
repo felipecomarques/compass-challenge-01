@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import { TutorsController } from '@controller/tutorsController'
-import { authMiddleware } from '@config/middleware/ensureAuth'
+import { authMiddleware } from '@config/utils/auth/middleware/ensureAuth'
 
 export const tutorRoutes = Router()
 const tutorsController = new TutorsController()
