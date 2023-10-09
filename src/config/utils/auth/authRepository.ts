@@ -37,7 +37,7 @@ export class AuthRepository {
 
       return { token }
     } catch (error) {
-      return { error: 'An error occurred while processing your request.' }
+      return { error: 'An error occurred while processing your request' }
     }
   }
 }

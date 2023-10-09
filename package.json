@@ -1,6 +1,6 @@
 {
-  "name": "compass-challenge-01",
-  "version": "1.0.0",
+  "name": "veterinary-clinic-api",
+  "version": "2.0.0",
   "description": "A Veterinary Clinic API built with Node.js and Express for managing appointments, patient records, and veterinary services",
   "main": "index.js",
   "scripts": {
@@ -45,6 +45,7 @@
     "joi": "^17.9.2",
     "jsonwebtoken": "^9.0.0",
     "swagger-jsdoc": "^6.2.8",
-    "swagger-ui-express": "^4.6.3"
+    "swagger-ui-express": "^4.6.3",
+    "zod": "^3.22.4"
   }
 }

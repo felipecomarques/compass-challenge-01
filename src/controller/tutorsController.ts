@@ -1,6 +1,6 @@
 import { type Request, type Response } from 'express'
 import { TutorService } from '@services/tutorService'
-import { handleError } from '@config/error/errorHandler'
+import { handleError } from '@config/utils/errorHandler'
 
 export class TutorsController {
   getAllTutors = async (req: Request, res: Response): Promise<void> => {
@@ -25,6 +25,16 @@ export class TutorsController {
     try {
       const idTutor = req.params.id
       const result = await new TutorService().updateTutor(idTutor, req.body)
+      res.status(200).json(result)
+    } catch (error) {
+      handleError(res, error)
+    }
+  }
+
+  patchTutor = async (req: Request, res: Response): Promise<void> => {
+    try {
+      const idTutor = req.params.id
+      const result = await new TutorService().patchTutor(idTutor, req.body)
       res.status(200).json(result)
     } catch (error) {
       handleError(res, error)

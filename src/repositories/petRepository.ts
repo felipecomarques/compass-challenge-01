@@ -43,6 +43,18 @@ export class PetRepository {
     return updatedPet
   }
 
+  async patchPet (tutorIdParams: string, petIdParams: string, petData: PatchPet): Promise<Pet | null> {
+    if (tutorIdParams == null || tutorIdParams === '' || petIdParams == null || petIdParams === '') {
+      return null
+    }
+
+    const updatedPet = await prisma.pet.update({
+      where: { id: petIdParams },
+      data: petData
+    })
+    return updatedPet
+  }
+
   async deletePet (tutorIdParams: string, petIdParams: string): Promise<Pet | null> {
     if (tutorIdParams == null || tutorIdParams === '' || petIdParams == null || petIdParams === '') {
       return null
@@ -56,4 +68,12 @@ export class PetRepository {
     })
     return deletedPet
   }
+}
+
+export interface PatchPet {
+  name?: string
+  species?: string
+  carry?: string
+  weight?: number
+  dateOfBirth?: Date
 }

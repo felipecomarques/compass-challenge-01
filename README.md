@@ -49,9 +49,11 @@ classDiagram
 </details>
 
 ## 📄 Documentation
-<!-- ![image](https://github.com/felipecomarques/compass-challenge-01/assets/57302703/b2e27c7c-1f0b-473d-b252-214a01fc3a26) -->
+<div align="center">
+    <img src="docs/resource/image/swagger.png" >
+</div>
 
-The API documentation is available through Swagger. You can access it by opening the following URL in your web browser after starting the server: [http://localhost:3000/api-docs/](http://localhost:5000/api-docs/)
+The API documentation is available through Swagger. You can access it by opening the following URL in your web browser after starting the server: http://localhost:{PORT}/api-docs/
 
 In the documentation, you can view request and response schemas, and even execute operations directly. It provides a convenient way to understand and interact with the API without the need for additional tools or clients.
 
@@ -71,12 +73,13 @@ In the documentation, you can view request and response schemas, and even execut
 <summary><strong>Tutor</strong></summary>
 <br/>
 
-| **Method** | **Route**        | **Operation**            | **Authentication** |
-|:----------:|------------------|--------------------------|--------------------|
-|     GET    | /tutor           | Retrieves all tutors     | Yes                |
-|    POST    | /tutor           | Create new tutor         | No                 |
-|     PUT    | /tutor/{tutorId} | Updates existing tutor   | Yes                |
-|   DELETE   | /tutor/{tutorId} | Delete an existing tutor | Yes                |
+| **Method** | **Route**   | **Operation**                       | **Authentication** |
+|:----------:|-------------|-------------------------------------|--------------------|
+|     GET    | /tutor      | Retrieves all tutors                | Yes                |
+|    POST    | /tutor      | Create new tutor                    | No                 |
+|    PATCH   | /tutor/{id} | Updates partially an existing tutor | Yes                |
+|     PUT    | /tutor/{id} | Updates existing tutor              | Yes                |
+|   DELETE   | /tutor/{id} | Delete an existing tutor            | Yes                |
 
 </details>
 
@@ -84,11 +87,12 @@ In the documentation, you can view request and response schemas, and even execut
 <summary><strong>Pet</strong></summary>
 <br/>
 
-| **Method** | **Route**                    | **Operation**          | **Authentication** |
-|:----------:|------------------------------|------------------------|--------------------|
-|    POST    | /pet/{tutorId}               | Create new pet         | Yes                |
-|     PUT    | /pet/{petId}/tutor/{tutorId} | Updates existing pet   | Yes                |
-|   DELETE   | /pet/{petId}/tutor/{tutorId} | Delete an existing pet | Yes                |
+| **Method** | **Route**                    | **Operation**                    | **Authentication** |
+|:----------:|------------------------------|----------------------------------|--------------------|
+|    POST    | /pet/{tutorId}               | Create new pet                   | Yes                |
+|    PATCH   | /pet/{petId}/tutor/{tutorId} | Updates partially a existing pet | Yes                |
+|     PUT    | /pet/{petId}/tutor/{tutorId} | Updates existing pet             | Yes                |
+|   DELETE   | /pet/{petId}/tutor/{tutorId} | Delete an existing pet           | Yes                |
 </details>
 
 ## ⏬ Installation
@@ -118,9 +122,11 @@ npm install
 npm run database
 ```
 
-5. Create a .env file in the root directory of the project (you can use the exemple in the root folder):
-```javascript
-MONGO_URI=<your-mongo-uri>
+5. Create a .env file in the root directory of the project (you can use the [exemple](https://github.com/felipecomarques/compass-challenge-01/blob/main/.env.example) in the root folder):
+```
+DATABASE_URL=<your-mongo-uri>
+PORT=<your-port>
+JWT_SECRET=<your-jwt-secret>
 ```
 </details>
 
@@ -133,7 +139,7 @@ MONGO_URI=<your-mongo-uri>
 npm run dev
 ```
 
-The server will start running on http://localhost:5000. You can access the application by opening this URL in your web browser.
+The server will start running on http://localhost:{PORT}. You can access the application by opening this URL in your web browser.
 </details>
 
 <details>
@@ -149,8 +155,8 @@ npm run build
 ```bash
 npm start
 ```
-The server will start running on http://localhost:5000. You can access the application by opening this URL in your web browser.
+The server will start running on http://localhost:{PORT}. You can access the application by opening this URL in your web browser.
 </details>
 
 ## ⚖️ License
-Code released under the [MIT LICENSE]().
+Code released under the [MIT LICENSE](https://github.com/felipecomarques/compass-challenge-01/blob/main/LICENSE).
