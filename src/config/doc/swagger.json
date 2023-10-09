@@ -11,7 +11,7 @@
     },
     "license": {
       "name": "MIT",
-      "url": "https://github.com/felipecomarques/library-management-api/blob/main/LICENSE"
+      "url": "https://github.com/felipecomarques/veterinary-clinic-api/blob/main/LICENSE"
     }
   },
   "tags": [
@@ -151,7 +151,16 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Tutor"
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "example": "doe.jhon@email.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "dvorak"
+                  }
+                }
               }
             }
           }
@@ -165,6 +174,9 @@
           },
           "401": {
             "description": "Missing token or invalid token"
+          },
+          "404": {
+            "description": "Entity not found"
           },
           "409": {
             "description": "The email already exists"
@@ -219,6 +231,9 @@
           "401": {
             "description": "Missing token or invalid token"
           },
+          "404": {
+            "description": "Entity not found"
+          },
           "409": {
             "description": "The email already exists"
           },
@@ -259,6 +274,9 @@
           },
           "401": {
             "description": "Missing token or invalid token"
+          },
+          "404": {
+            "description": "Entity not found"
           },
           "409": {
             "description": "Conflict between dependencies (did you try to delete a tutor with an associated pet?)"
@@ -314,6 +332,9 @@
           "401": {
             "description": "Missing token or invalid token"
           },
+          "404": {
+            "description": "Entity not found"
+          },
           "422": {
             "description": "Field validation error"
           },
@@ -360,7 +381,16 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Pet"
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Lua"
+                  },
+                  "species": {
+                    "type": "string",
+                    "example": "cat"
+                  }
+                }
               }
             }
           }
@@ -374,6 +404,9 @@
           },
           "401": {
             "description": "Missing token or invalid token"
+          },
+          "404": {
+            "description": "Entity not found"
           },
           "422": {
             "description": "Field validation error"
@@ -434,6 +467,9 @@
           "401": {
             "description": "Missing token or invalid token"
           },
+          "404": {
+            "description": "Entity not found"
+          },
           "422": {
             "description": "Field validation error"
           },
@@ -480,6 +516,9 @@
           },
           "401": {
             "description": "Missing token or invalid token"
+          },
+          "404": {
+            "description": "Entity not found"
           },
           "500": {
             "description": "Internal server error"
