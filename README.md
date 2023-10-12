@@ -1,10 +1,14 @@
 # Veterinary Clinic API
+<div align="left">
+    <img src="https://img.shields.io/badge/License-MIT-blue" >
+    <img src="https://img.shields.io/badge/Code_coverage-96.16%25_Statements-orange">
+</div>
 A Veterinary Clinic API for managing veterinary services.
 
 ## 💻 Overview
 A Veterinary Clinic API built with Node.js and Express for managing veterinary services. A client needs a new microservice for its veterinary franchise. This microservice will be used by all the clinics they own for internal client and attendances management.
 
-This project was made for a [Compass UOL](https://compass.uol/en/home/) challenge.
+This project was originally made for [Compass UOL](https://compass.uol/en/home/) challenge and then refactored to the current result
 
 ### 💿 Technologies
 ![Technologies](https://skillicons.dev/icons?i=ts,jest,prisma,mongodb,babel,express,nodejs)
@@ -156,6 +160,18 @@ npm run build
 npm start
 ```
 The server will start running on http://localhost:{PORT}. You can access the application by opening this URL in your web browser.
+</details>
+
+<details>
+<summary><strong>Run tests with Jest</strong></summary>
+<br/>
+
+1. Run the following command:
+```bash
+npm test
+```
+
+The tests will begin. At the end, the test coverage will be displayed
 </details>
 
 ## ⚖️ License

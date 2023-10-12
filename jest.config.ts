@@ -16,7 +16,7 @@ const config: Config = {
   clearMocks: true,
 
   // Indicates whether the coverage information should be collected while executing the test
-  // collectCoverage: false,
+  // collectCoverage: true,
 
   // An array of glob patterns indicating a set of files for which coverage information should be collected
   // collectCoverageFrom: undefined,
@@ -90,7 +90,7 @@ const config: Config = {
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, { prefix: '<rootDir>' }),
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
-  // modulePathIgnorePatterns: [],
+  modulePathIgnorePatterns: ["<rootDir>/dist/"],
 
   // Activates notifications for test results
   // notify: false,
