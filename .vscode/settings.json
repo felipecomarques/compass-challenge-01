@@ -4,11 +4,14 @@
         "source.fixAll.eslint": true
     },
     "material-icon-theme.folders.associations": {
-        "repositories": "interface",
+        "repositories": "mappings",
+        "entities": "class",
+        "useCases": "controller",
         "services": "rules",
         "infrastructure": "tools"
     },
     "cSpell.words": [
+        "bson",
         "datetime"
     ]
 }
