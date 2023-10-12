@@ -1,23 +1,27 @@
-import { app } from '../../app'
+import { app } from '@src/app'
 import supertest from 'supertest'
 
-describe('Test for POST method on Tutors', () => {
+describe('Test for POST method on Auth', () => {
   let authToken: string
   let id: string
 
   beforeAll(async () => {
-    const response = await supertest(app).post('/tutor/').send({
-      name: 'Test tutor - AUTH',
+    const response = await supertest(app).post('/tutor').send({
+      name: 'Test Auth - POST',
       password: '12345',
       phone: '123456789',
-      email: 'tutorAAAAUTH@test.com',
+      email: 'tutorAuth@test.com',
       dateOfBirth: '2000',
       zipCode: '12345'
     })
     id = response.body.id
   })
 
-  it('Should create a new token', async () => {
+  afterAll(async () => {
+    await supertest(app).delete(`/tutor/${id}`).set('Authorization', `Bearer ${authToken}`)
+  })
+
+  it('Should create a new token and return 200 status code', async () => {
     const userData = {
       name: 'tutorAUTH@test.com',
       password: '12345'
@@ -27,7 +31,7 @@ describe('Test for POST method on Tutors', () => {
     expect(response.status).toBe(200)
   })
 
-  it('Should return 400 for incorrect password', async () => {
+  it('Should return status code 400 for incorrect password', async () => {
     const userData = {
       email: 'tutorAUTH@test.com',
       password: `12345${6}`
@@ -39,7 +43,7 @@ describe('Test for POST method on Tutors', () => {
     })
   })
 
-  it('Should return 400 for incorrect email', async () => {
+  it('Should return status code 400 for incorrect email', async () => {
     const userData = {
       email: `${6}tutorAUTH@test.com`,
       password: '12345'
@@ -49,9 +53,5 @@ describe('Test for POST method on Tutors', () => {
     expect(response.body).toEqual({
       error: 'User or password incorrect'
     })
-  })
-
-  afterAll(async () => {
-    await supertest(app).delete(`/tutor/${id}`).set('Authorization', `Bearer ${authToken}`)
   })
 })

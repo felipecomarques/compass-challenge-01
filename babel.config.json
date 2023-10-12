@@ -19,7 +19,7 @@
                     "@repositories": "./src/repositories",
                     "@services": "./src/services",
                     "@config": "./src/config",
-                    "@views": "./src/views"
+                    "@src": "./src"
                 }
             }
         ]
